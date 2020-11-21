@@ -1,0 +1,33 @@
+/* pages/introduce/introduce.wxss */
+
+.introduce-container {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background: #f5f5f5;
+  /* background:red; */
+}
+
+.top-wrapper {
+  /* height:300rpx; */
+  position: relative;
+  background:red;
+}
+
+.left {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 0;
+  height: 0;
+  border-top: 400rpx solid #44c1af;
+  border-right: 1200rpx solid transparent;
+}
+
+
+.right {
+
+}
+

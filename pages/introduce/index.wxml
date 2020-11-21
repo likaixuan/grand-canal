@@ -1,0 +1,8 @@
+<!--pages/introduce/introduce.wxml-->
+<view class='introduce-container'>
+  <view class='top-wrapper'>
+    <view class='left'>
+      <image src=''></image>
+    </view>
+  </view>
+</view>

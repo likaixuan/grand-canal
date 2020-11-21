@@ -1,0 +1,61 @@
+<!--pages/user/user.wxml-->
+<view class='user-container'>
+  <view class="top-wrapper">
+    <image src="{{userInfo.avatar}}" mode="scaleToFill" class="gif-wave"></image>
+    <view class="user-nickname">
+      {{userInfo.realname || userInfo.nickName}}
+    </view>
+    <view class="user-phone" wx:if="{{userInfo.phone}}">
+      {{userInfo.phone}}
+    </view>
+  </view>
+  <scroll-view class="timeline-wrapper">
+    <view class="cu-timeline">
+      <view class="cu-time">昨天</view>
+      <view class="cu-item cur cuIcon-noticefill">
+        <view class="content text-grey shadow-blur">
+          <text>10:22</text> 获得“古老大运河，两岸新气象”设计大赛一等奖
+        </view>
+      </view>
+      <view class="cu-item text-grey cuIcon-evaluate_fill">
+        <view class="content bg-grey shadow-blur">
+          对《大运河，伟大的母亲》送出了鲜花
+        </view>
+      </view>
+      <view class="cu-item text-blue">
+        <view class="bg-blue content">
+          <text>20:00</text> 黄昏
+       
+        </view>
+        <view class="bg-cyan content">
+          <text>19:51</text> 寄语飞南归北雁，大河头尾是家川
+          <view style="margin-top:16rpx;"> 
+            <image src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3344857819,1796649241&fm=26&gp=0.jpg" style="height:280rpx;"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="cu-timeline">
+      <view class="cu-time">11-22</view>
+      <view class="cu-item">
+        <view class="content">
+          <text>01:37</text> 大运河水真甜
+        </view>
+      </view>
+    </view>
+
+    <view class="cu-timeline">
+      <view class="cu-time">11-21</view>
+      <view class="cu-item">
+        <view class="content">
+          <view class="cu-capsule radius">
+            <view class="cu-tag bg-cyan">上午</view>
+            <view class="cu-tag line-cyan">09:31</view>
+          </view>
+          <view class="margin-top">大运河作为母亲河，惠泽着沧州这片土地，养育了两岸历史百姓。正月里开河鲜、五月端午赛龙舟、七月十五放河灯、腊月里藏冰等外。正月十六遛百病，遵照习近平总书记重要指示批示精神，打造大运河文化带，深入挖掘大运河丰富的历史文化资源，保护好、传承好、利用好大运河这一祖先留给我们的宝贵遗产。</view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

@@ -1,0 +1,16 @@
+<!--custom-tab-bar/index.wxml-->
+<view class='tabs-wrapper public-shadow2'>
+  <view class="tab-item {{currentIndex==1 ? 'active':''}}" data-path='/pages/introduce/index' data-index="{{1}}" bindtap='switchTab'>
+    <icon class='iconfont iconfengjing' />
+    <view class="tab-text">运河</view>
+  </view>
+  <view class='tab-item big public-shadow1' data-index="{{0}}" data-path='/pages/index/index' bindtap='switchTab'>
+    <view class="icon-wrapper">
+        <icon class='iconfont iconxiangji' />
+    </view>
+  </view>
+  <view  class="tab-item {{currentIndex==2 ? 'active':''}}" data-index="{{2}}" data-path='/pages/user/index' bindtap='switchTab'>
+    <icon class='iconfont iconyonghu'/>
+    <view class="tab-text">我的</view>
+  </view>
+</view>

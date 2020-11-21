@@ -1,0 +1,72 @@
+/* custom-tab-bar/index.wxss */
+
+.tabs-wrapper {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  height: 144rpx;
+  display: flex;
+  background: white;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 120rpx;
+}
+
+.tabs-wrapper .tab-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tab-item .tab-text {
+  margin-top: 8rpx;
+  font-size: 24rpx;
+  color: rgba(0, 0, 0, 0.53);
+}
+
+.tab-item icon {
+  /* color:white; */
+  color: rgba(0, 0, 0, 0.53);
+}
+
+.tab-item.active icon {
+  color: #44c1af;
+}
+
+.tab-item.active .tab-text {
+  color: #44c1af;
+}
+
+.tab-item.big {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -40rpx);
+  height: 152rpx;
+  width: 152rpx;
+  border-radius: 50%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.tab-item.big icon {
+  color: white;
+}
+
+.tab-item.big .icon-wrapper {
+  border-radius: 50%;
+  background: #44c1af;
+  height: 128rpx;
+  width: 128rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tabs-wrapper .tab-item.big icon {
+  font-size: 80rpx;
+}
