@@ -1,5 +1,5 @@
 <!--pages/user/user.wxml-->
-<view class='user-container'>
+<scroll-view class='user-container' scroll-y>
   <view class="top-wrapper">
     <block wx:if="{{userInfo}}">
       <image src="{{userInfo.avatarUrl}}" mode="scaleToFill" class="avatar"></image>
@@ -26,7 +26,7 @@
     </view>
   </block>
   <block wx:else>
-    <scroll-view class="timeline-wrapper">
+    <view class="timeline-wrapper">
     <view class="cu-timeline">
       <view class="cu-time">昨天</view>
       <view class="cu-item cur cuIcon-noticefill">
@@ -72,6 +72,6 @@
         </view>
       </view>
     </view>
-  </scroll-view>
+  </view>
   </block>
-</view>
+</scroll-view>

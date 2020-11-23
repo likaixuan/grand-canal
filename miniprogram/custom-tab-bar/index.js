@@ -25,6 +25,14 @@ Component({
       wx.switchTab({
         url: e.currentTarget.dataset.path
       })
+    },
+    openUploadPanel() {
+      // const handle = getCurrentPages()
+      // handle[0].openUploadPanel()
+      wx.navigateTo({
+        url:'/pages/upload/index'
+      })
+      // console.log(getCurrentPages())
     }
   }
 

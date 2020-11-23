@@ -23,9 +23,12 @@ class Common {
   // 通用新增
   add(params) {
     return new Promise((resolve,reject)=>{
+      const time =  this.db.serverDate()
       this.db.collection(this.tableName).add({
         data: {
-          ...params
+          ...params,
+          createTime:time,
+          updateTime:time
         },
         success: res => {
           resolve(res)
@@ -39,9 +42,11 @@ class Common {
   // 通用编辑
   update({_id,params}) {
     return new Promise((resolve,reject) =>{
+      const time =  this.db.serverDate()
       this.db.collection(this.tableName).doc(_id).update({
         data: {
-          ...params
+          ...params,
+          updateTime:time
         },
         success: res => {
           resolve(res)

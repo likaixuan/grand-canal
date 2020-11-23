@@ -15,5 +15,8 @@ Page({
   },
   onLoad: function () {
     
+  },
+  openUploadPanel() {
+    console.log(666)
   }
 })

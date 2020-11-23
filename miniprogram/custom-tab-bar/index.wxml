@@ -4,10 +4,14 @@
     <icon class='iconfont iconfengjing' />
     <view class="tab-text">运河</view>
   </view>
-  <view class='tab-item big public-shadow1' data-index="{{0}}" data-path='/pages/index/index' bindtap='switchTab'>
-    <view class="icon-wrapper">
+  <view class='tab-item big public-shadow1' data-index="{{0}}">
+    <view class="icon-wrapper" wx:if="{{currentIndex==0}}" bindtap="openUploadPanel">
         <icon class='iconfont iconxiangji' />
     </view>
+    <view class="icon-wrapper" wx:else>
+        <icon class='iconfont icondongtai' data-path='/pages/index/index' bindtap='switchTab'/>
+    </view>
+    
   </view>
   <view  class="tab-item {{currentIndex==2 ? 'active':''}}" data-index="{{2}}" data-path='/pages/user/index' bindtap='switchTab'>
     <icon class='iconfont iconyonghu'/>
