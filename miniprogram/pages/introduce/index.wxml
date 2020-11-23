@@ -5,4 +5,9 @@
       <image src=''></image>
     </view>
   </view>
+  <view class="">
+    <view class='right'>
+      <image src=''></image>
+    </view>
+  </view>
 </view>

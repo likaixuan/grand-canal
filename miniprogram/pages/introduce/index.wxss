@@ -11,9 +11,13 @@
 }
 
 .top-wrapper {
-  /* height:300rpx; */
   position: relative;
   background:red;
+}
+
+.bottom-wrapper {
+  position: absolute;
+  bottom:0px;
 }
 
 .left {
@@ -28,6 +32,12 @@
 
 
 .right {
-
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 0;
+  height: 0;
+  border-top: 400rpx solid #44c1af;
+  border-right: 1200rpx solid transparent;
 }
 

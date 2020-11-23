@@ -1,9 +1,8 @@
 {
   "pages": [
-    "pages/user/index",
     "pages/introduce/index",
-    "pages/index/index",
-    "custom-tab-bar/index"
+    "pages/user/index",
+    "pages/index/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -26,5 +25,6 @@
       }
     ]
   },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
 }
