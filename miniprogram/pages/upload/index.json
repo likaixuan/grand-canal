@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "惊鸿一瞥",
+  "usingComponents": {
+    "van-uploader": "@vant/weapp/uploader/index",
+    "van-field": "@vant/weapp/field/index"
+  }
+}

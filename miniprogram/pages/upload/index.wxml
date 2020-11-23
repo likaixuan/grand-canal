@@ -1,0 +1,22 @@
+<scroll-view class='upload-container'>
+  <van-cell-group>
+      <van-field
+        model:value="{{ content }}"
+        label="想法"
+        type="textarea"
+        placeholder="这一刻的想法..."
+        maxlength="{{200}}"
+        show-word-limit
+        autosize
+        border="{{ false }}"
+      />
+  </van-cell-group>
+  <view class="upload-wrapper">
+    <van-uploader file-list="{{ fileList }}" max-count="3" bind:after-read="afterRead" />
+  </view>
+  <view class="btn-wrapper">
+    <view class="padding flex flex-direction">
+    <button class="cu-btn bg-grey round shadow" bindtap="handleUpload">发布</button>
+</view>
+  </view>
+</scroll-view>

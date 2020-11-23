@@ -1,0 +1,20 @@
+/* miniprogram/pages/upload/upload.wxss */
+.upload-container {
+  background:white;
+  position:absolute;
+  top:0px;
+  bottom:0px;
+  left:0px;
+  right:0px;
+  padding-top:32rpx;
+}
+
+.upload-wrapper {
+  padding:48rpx;
+}
+
+.btn-wrapper {
+  margin-top:64rpx;
+  /* display:flex; */
+  /* justify-content:center; */
+}
