@@ -1,15 +1,32 @@
 <!--pages/user/user.wxml-->
 <view class='user-container'>
   <view class="top-wrapper">
-    <image src="{{userInfo.avatar}}" mode="scaleToFill" class="gif-wave"></image>
-    <view class="user-nickname">
-      {{userInfo.realname || userInfo.nickName}}
-    </view>
-    <view class="user-phone" wx:if="{{userInfo.phone}}">
-      {{userInfo.phone}}
-    </view>
+    <block wx:if="{{userInfo}}">
+      <image src="{{userInfo.avatarUrl}}" mode="scaleToFill" class="avatar"></image>
+      <view class="user-nickname">
+        {{userInfo.realname || userInfo.nickName}}
+      </view>
+      <view class="user-phone" wx:if="{{userInfo.phone}}">
+        {{userInfo.phone}}
+      </view>
+    </block>
+    <block wx:else>
+      <view class="avatar">
+        <text>运河</text>
+      </view>
+      <!-- <view class="user-nickname">
+        临时用户
+      </view> -->
+    </block>
+  
   </view>
-  <scroll-view class="timeline-wrapper">
+  <block wx:if="{{!userInfo}}">
+    <view class="btn-wrapper">
+      <button class="cu-btn round line-cyan shadow lg" open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">立即登录</button>
+    </view>
+  </block>
+  <block wx:else>
+    <scroll-view class="timeline-wrapper">
     <view class="cu-timeline">
       <view class="cu-time">昨天</view>
       <view class="cu-item cur cuIcon-noticefill">
@@ -35,7 +52,6 @@
         </view>
       </view>
     </view>
-
     <view class="cu-timeline">
       <view class="cu-time">11-22</view>
       <view class="cu-item">
@@ -44,7 +60,6 @@
         </view>
       </view>
     </view>
-
     <view class="cu-timeline">
       <view class="cu-time">11-21</view>
       <view class="cu-item">
@@ -58,4 +73,5 @@
       </view>
     </view>
   </scroll-view>
+  </block>
 </view>

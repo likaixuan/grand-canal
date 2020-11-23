@@ -7,8 +7,8 @@
 import {
   Common
 } from './Common.js'
-const db = wx.cloud.database()
 class User extends Common{
+  tableName = 'user'
   scheme = {
     nickname:'',
     phone:''

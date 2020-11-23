@@ -3,14 +3,14 @@
  * @author likaixuan
  * @date 2020-11-23
  */
-
-const db = wx.cloud.database()
 class Common {
+  db = wx.cloud.database()
+  tableName = ''
   scheme = {}
   // 通用查询
   get(params) {
     return new Promise((resolve,reject)=>{
-      db.collection('counters').where(params).get({
+      this.db.collection(this.tableName).where(params).get({
         success: res => {
           resolve(res)
         },
@@ -23,9 +23,9 @@ class Common {
   // 通用新增
   add(params) {
     return new Promise((resolve,reject)=>{
-      db.collection('counters').add({
+      this.db.collection(this.tableName).add({
         data: {
-          params
+          ...params
         },
         success: res => {
           resolve(res)
@@ -37,11 +37,11 @@ class Common {
     })
   }
   // 通用编辑
-  update(id,params) {
+  update({_id,params}) {
     return new Promise((resolve,reject) =>{
-      db.collection('counters').doc(id).update({
+      this.db.collection(this.tableName).doc(_id).update({
         data: {
-          params
+          ...params
         },
         success: res => {
           resolve(res)
@@ -55,8 +55,7 @@ class Common {
   // 通用删除
   delete(id,params) {
     return new Promise((resolve,reject) =>{
-        const db = wx.cloud.database()
-        db.collection('counters').doc(id).remove({
+        this.db.collection(this.tableName).doc(id).remove({
           success: res => {
             resolve(res)
           },

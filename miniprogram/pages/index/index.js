@@ -4,7 +4,7 @@ const app = getApp()
 
 Page({
   data: {
-   
+    userInfo:app.globalData.userInfo 
   },
   onShow: function () {
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {

@@ -1,22 +1,23 @@
 // pages/user/user.js
+import {
+  User
+} from '../../model/User.js'
+const user = new User()
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    userInfo:{
-      avatar:'https://wx.qlogo.cn/mmopen/vi_32/FJtqJGm3kLA72gOliaBOgBnAn5Gx4iaINNfh6Uly4VmbF6YofXyr9BYxAibHg26ibanrSnfkibVciaOcWomiaygOWKaDA/132',
-      nickName:'清流',
-      phone:'1522***3350'
-    }
+    userInfo:app.globalData.userInfo 
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    // console.log(wx.Cloud.getWXContext(),333)
   },
 
   /**
@@ -35,40 +36,39 @@ Page({
         currentIndex: 2
       })
     }
+    this.initData()
   },
 
   /**
-   * 生命周期函数--监听页面隐藏
+   * Methods 相关
    */
-  onHide: function () {
-
+  initData() {
+    this.setData({
+      userInfo:app.globalData.userInfo
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  onGetUserInfo(e) {
+    // console.log(e,222)
+    const userInfo = e.detail.userInfo
+    if(userInfo) {
+      wx.showLoading({
+        title: '正在登录',
+      })
+      app.updateOrAddUser(userInfo).then((res)=>{
+        this.initData()
+        wx.showToast({
+          title: '登录成功',
+          icon: 'success',
+          duration: 2000
+        })
+      }).catch((error)=>{
+        console.log(error)
+          wx.showToast({
+            title: '登录失败，请重试！',
+            icon: 'none',
+            duration: 2000
+          })
+      })
+    }
   }
 })
