@@ -2,6 +2,7 @@
 import {
   Trend
 } from '../../model/Trend.js'
+const app = getApp()
 const trend = new Trend()
 Page({
 
@@ -69,9 +70,12 @@ Page({
           this.setData({fileList: newFileList })
           return trend.add({
             content,
-            imgList:newFileList
+            imgList:newFileList,
+            
           }).then((res)=>{
             wx.showToast({ title: '发布成功', icon: 'success' });
+            app.globalData.isPublished = true
+            wx.navigateBack()
           }).catch((err)=>{
             wx.showToast({ title: '发布失败', icon: 'none' });
           })

@@ -8,7 +8,7 @@ class Common {
   tableName = ''
   scheme = {}
   // 通用查询
-  get(params) {
+  get(params = {}) {
     return new Promise((resolve,reject)=>{
       this.db.collection(this.tableName).where(params).get({
         success: res => {
@@ -26,6 +26,7 @@ class Common {
       const time =  this.db.serverDate()
       this.db.collection(this.tableName).add({
         data: {
+          ...this.scheme,
           ...params,
           createTime:time,
           updateTime:time

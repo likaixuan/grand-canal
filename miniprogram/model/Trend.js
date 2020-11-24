@@ -10,8 +10,11 @@ import {
 class Trend extends Common{
   tableName = 'trend'
   scheme = {
-    nickname:'',
-    phone:''
+    imgList:[],
+    content:'',
+    likeNum:0,
+    readNum:0,
+    commentNum:0
   }
 }
 

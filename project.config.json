@@ -35,7 +35,8 @@
     "useCompilerModule": true,
     "userConfirmedUseCompilerModuleSwitch": false,
     "userConfirmedBundleSwitch": false,
-   
+    "packNpmManually": false,
+    "packNpmRelationList": [],
     "minifyWXSS": true
   },
   "appid": "wx6f92870526474f15",

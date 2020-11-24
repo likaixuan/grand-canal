@@ -29,6 +29,7 @@ App({
    
   },
   globalData: {
+    isPublished:false, // 用于发表成功想法back后，动态页刷新
     userInfo: wx.getStorageSync('userInfo')
   },
   /**
