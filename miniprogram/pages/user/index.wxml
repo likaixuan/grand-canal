@@ -6,9 +6,9 @@
       <view class="user-nickname">
         {{userInfo.realname || userInfo.nickName}}
       </view>
-      <view class="user-phone" wx:if="{{userInfo.phone}}">
+      <!-- <view class="user-phone" wx:if="{{userInfo.phone}}">
         {{userInfo.phone}}
-      </view>
+      </view> -->
     </block>
     <block wx:else>
       <view class="avatar">
@@ -18,9 +18,8 @@
         临时用户
       </view> -->
     </block>
-  
   </view>
-  <block wx:if="{{!userInfo}}">
+  <block wx:if="{{!userInfo || userInfo.type === User.TYPE_TEMP}}">
     <view class="btn-wrapper">
       <button class="cu-btn round line-cyan shadow lg" open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">立即登录</button>
     </view>

@@ -13,7 +13,6 @@ App({
     })
     // 云开发初始化
   
-      console.log(444233)
       const user = new User()
       // 获取授权信息
       promisify(wx.getSetting)().then((res)=>{
@@ -22,8 +21,16 @@ App({
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
           return promisify(wx.getUserInfo)().then((res)=>{
             const userInfo = res.userInfo
-            return this.updateOrAddUser(res.userInfo)
+            return this.updateOrAddUser({
+              ...res.userInfo,
+              type:User.TYPE_REGULAR
+            })
           })
+        } else {
+            return this.updateOrAddUser({
+              nickName:'临时用户'+ Date.now() ,
+              type:User.TYPE_TEMP
+            })
         }
       })
    
@@ -42,7 +49,7 @@ App({
       data: {},
     }).then((res)=>{
       const openid =  res.result.openid
-      this.globalData.openid = userInfo.openid = openid
+      this.globalData.openid = openid
       return user.get({
         _openid:openid
       }).then(({data})=>{

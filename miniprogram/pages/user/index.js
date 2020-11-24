@@ -10,7 +10,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo:app.globalData.userInfo 
+    userInfo:app.globalData.userInfo,
+    User:{
+      ...User
+    }
   },
 
   /**
@@ -54,7 +57,10 @@ Page({
       wx.showLoading({
         title: '正在登录',
       })
-      app.updateOrAddUser(userInfo).then((res)=>{
+      app.updateOrAddUser({
+        ...userInfo,
+        type:User.TYPE_REGULAR
+      }).then((res)=>{
         this.initData()
         wx.showToast({
           title: '登录成功',
