@@ -28,7 +28,7 @@
   bottom:144rpx;
   display: flex;
   /* background:red; */
-  justify-items:center;
+  justify-content:center;
   align-items:center;
   /* margin-bottom:160rpx; */
 }
