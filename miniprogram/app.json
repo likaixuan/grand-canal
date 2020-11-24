@@ -29,5 +29,10 @@
       }
     ]
   },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "您的位置信息将用于探索附近的运河想法"
+    }
+  },
   "sitemapLocation": "sitemap.json"
 }

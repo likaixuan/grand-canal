@@ -3,13 +3,48 @@
   <view class="content-wrapper">
     <view class="cu-bar bg-white solid-bottom {{isCard?'margin-top':''}}">
   <view class='action'>
-    <text class='cuIcon-titles text-orange '></text> 动态类卡片
+    <text class='cuIcon-titles text-orange '></text> 足迹视图
   </view>
   <view class='action'>
-    <switch class='sm' checked='{{isCard}}' bindchange='isCard'></switch>
+    <switch class='sm' checked='{{isMap}}' bindchange='onShowTypeChange'></switch>
   </view>
 </view>
-<view class="cu-card dynamic no-card" wx:for="{{trendList}}" wx:key="{{index}}">
+<block wx:if="{{isMap}}">
+  <view class="map-container">
+  <view class="setting-wrapper cu-list menu" wx:if="{{isLocationAuthorize}}">
+      <view class="cu-item">
+        <view class="content">
+          <text class="cuIcon-warn text-orange"></text>
+          <text class="text-grey">授权后可查看附近想法</text>
+        </view>
+        <view class="action">
+          <button class="cu-btn round bg-orange shadow" bindopensetting="onOpensetting" open-type="openSetting">
+            <text class="cuIcon-settingsfill"></text> 立即授权</button>
+        </view>
+      </view>
+  </view>
+  <icon  bindtap="moveToLocation" class="move-center-btn iconfont icon83dingwei public-shadow2"></icon>
+    <map 
+           id="map"
+           show-location="{{true}}" 
+           markers="{{map.markers}}"
+           latitude="{{map.latitude}}"
+           longitude="{{map.longitude}}"
+           bindcallouttap="callouttap">
+      <cover-view slot="callout" >
+        <cover-view marker-id="{{1}}" class="marker-wrapper public-shadow2">
+          <!-- <cover-view class="marker-image" style="background-image:url(https://thirdwx.qlogo.cn/mmopen/vi_32/5Bu9SmQFDPqySiaZ7brMuTu0v083ic0m3ICicXyj0EhetJlYNgxvGkQZvZyTicf1fY5KvSR3wiaDmOwqTmyoXtHN6XQ/132)"></cover-view> -->
+          <cover-image class="marker-image" src="https://thirdwx.qlogo.cn/mmopen/vi_32/5Bu9SmQFDPqySiaZ7brMuTu0v083ic0m3ICicXyj0EhetJlYNgxvGkQZvZyTicf1fY5KvSR3wiaDmOwqTmyoXtHN6XQ/132"/>
+          <cover-view></cover-view>
+        </cover-view>
+      </cover-view>
+    </map>
+  </view>
+
+
+</block>
+<block wx:else>
+  <view class="cu-card dynamic no-card" wx:for="{{trendList}}" wx:key="{{index}}">
   <view class="cu-item shadow">
     <view class="cu-list menu-avatar">
       <view class="cu-item">
@@ -36,16 +71,15 @@
           class="image"
         />
       </view>
-   
-
     </view>
     <view class="text-gray text-sm text-right padding">
       <text class="cuIcon-attentionfill margin-lr-xs"></text> {{item.readNum}}
       <text class="cuIcon-appreciatefill margin-lr-xs"></text> {{item.likeNum}}
       <text class="cuIcon-messagefill margin-lr-xs"></text> {{item.commentNum}}
     </view>
-
   </view>
 </view>
+</block>
+
   </view>
 </scroll-view>

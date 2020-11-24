@@ -1,3 +1,4 @@
+// 普通api promise化
 const promisify = original => {
   return function (opt = {}) {
     return new Promise((resolve, reject) => {
@@ -7,6 +8,30 @@ const promisify = original => {
       }))
     })
   }
+}
+/**
+ *
+ @author likaixuan
+ *
+ @date 2017-02-21
+ *
+ * 简易假深拷贝
+ */
+const deepCopy = function (obj, options = {}) {
+  const { keys = [], excludeKeys = [] } = options
+  let copyObj = {}
+  if (Array.isArray(keys) && keys.length > 0) {
+    keys.forEach((item) => {
+      copyObj[item] = obj[item]
+    })
+    copyObj = JSON.parse(JSON.stringify(copyObj))
+  } else {
+    copyObj = JSON.parse(JSON.stringify(obj))
+  }
+  excludeKeys.forEach((key) => {
+    delete copyObj[key]
+  })
+  return copyObj
 }
 
 const formatTime = date => {
@@ -27,6 +52,7 @@ const formatNumber = n => {
 
 export {
   promisify,
+  deepCopy,
   formatTime,
   formatNumber
 }

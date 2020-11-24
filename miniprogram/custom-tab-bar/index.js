@@ -27,12 +27,41 @@ Component({
       })
     },
     openUploadPanel() {
-      // const handle = getCurrentPages()
-      // handle[0].openUploadPanel()
-      wx.navigateTo({
-        url:'/pages/upload/index'
+      const scope = 'scope.userLocation'
+      wx.getSetting({
+        scope,
+        complete: (res) => {
+          if (res.errMsg === 'getSetting:ok') {
+            if (res.authSetting['scope.userLocation']) {
+              // 已授权 可以获取当前位置
+              this.getCurrentLocation()
+            } else if (res.authSetting['scope.userLocation'] === false) {
+              // 明确拒绝过
+              // this.setData({
+              //   isLocationAuthorize: false
+              // })
+            } else {
+              // 第一次
+              // this.locationAuthorize()
+              wx.authorize({
+                scope,
+                success: (res) => {
+                  // this.setData({
+                  //   isLocationAuthorize: true
+                  // })
+                  // this.getCurrentLctAndNearbyDevice()
+                },
+                fail: (res) => {
+                
+                }
+              })
+            }
+          }
+        }
       })
-      // console.log(getCurrentPages())
+      // wx.navigateTo({
+      //   url:'/pages/upload/index'
+      // })
     }
   }
 

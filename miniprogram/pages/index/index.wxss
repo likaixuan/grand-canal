@@ -22,3 +22,70 @@
   width:200rpx;
   height:200rpx; */
 }
+
+.map-container {
+  position: fixed;
+  top:100rpx;
+  left:0px;
+  right:0px;
+  bottom:144rpx;
+}
+.map-container map {
+  height:100%;
+  width:100%;
+}
+
+.marker-wrapper {
+  height:104rpx;
+  width:104rpx;
+  border-radius:50%;
+  background:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  /* overflow: hidden; */
+}
+
+.marker-image {
+  height:88rpx;
+  width:88rpx;
+  border-radius:50%;
+  background-size:cover;
+}
+
+.move-center-btn {
+  /* position: absolute;
+  z-index:999;
+  width:80rpx;
+  height:80rpx;
+  border-radius:50%;
+  background:#44c1af;
+  top:0px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:white; */
+}
+.setting-wrapper {
+  position: absolute;
+  z-index:999;
+  left:0px;
+  top:0px;
+  right:0px;
+}
+.move-center-btn {
+  position: absolute;
+  z-index:999;
+  width:80rpx;
+  height:80rpx;
+  border-radius:50%;
+  background:#44c1af;
+  left:56rpx;
+  bottom:80rpx;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:white;
+  font-size:56rpx;
+  
+}

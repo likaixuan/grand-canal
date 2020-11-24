@@ -3,6 +3,7 @@ import {
   User
 } from './model/User.js'
 import {
+  deepCopy,
   promisify
 } from './utils/util.js'
 App({
@@ -57,6 +58,11 @@ App({
         console.log(data,222)
         if(data.length>0) {
           const _id = data[0]._id
+          if(data[0].type === User.TYPE_REGULAR) {
+            userInfo = deepCopy(data[0],{
+              excludeKeys:['_id','_openid']
+            })
+          }
           return user.update({
             _id,
             params:userInfo

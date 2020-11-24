@@ -6,6 +6,20 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "4566821",
+      "name": "中心介绍",
+      "font_class": "zhongxinjieshao",
+      "unicode": "e643",
+      "unicode_decimal": 58947
+    },
+    {
+      "icon_id": "16589954",
+      "name": "定位",
+      "font_class": "83dingwei",
+      "unicode": "e632",
+      "unicode_decimal": 58930
+    },
+    {
       "icon_id": "683403",
       "name": "活动推广",
       "font_class": "huodongtuiguang",
