@@ -1,9 +1,10 @@
 {
   "pages": [
+    "pages/user/index",
     "pages/index/index",
     "pages/introduce/index",
-    "pages/user/index",
-    "pages/upload/index"
+    "pages/upload/index",
+    "pages/timeline/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#44c1af",
