@@ -14,74 +14,12 @@ Page({
     User:{
       ...User
     },
-    iconList: [{
-      icon: 'cardboardfill',
-      color: 'red',
-      badge: 120,
-      name: 'VR'
-    }, {
-      icon: 'recordfill',
-      color: 'orange',
-      badge: 1,
-      name: '录像'
-    }, {
-      icon: 'picfill',
-      color: 'yellow',
-      badge: 0,
-      name: '图像'
-    }, {
-      icon: 'noticefill',
-      color: 'olive',
-      badge: 22,
-      name: '通知'
-    }, {
-      icon: 'upstagefill',
-      color: 'cyan',
-      badge: 0,
-      name: '排行榜'
-    }, {
-      icon: 'clothesfill',
-      color: 'blue',
-      badge: 0,
-      name: '皮肤'
-    }, {
-      icon: 'discoverfill',
-      color: 'purple',
-      badge: 0,
-      name: '发现'
-    }, {
-      icon: 'questionfill',
-      color: 'mauve',
-      badge: 0,
-      name: '帮助'
-    }, {
-      icon: 'commandfill',
-      color: 'purple',
-      badge: 0,
-      name: '问答'
-    }, {
-      icon: 'brandfill',
-      color: 'mauve',
-      badge: 0,
-      name: '版权'
-    }],
-    gridCol:3,
+    isShowShare: false,
+    options: [
+      { name: '微信', icon: 'wechat', openType: 'share' },
+      { name: '分享海报', icon: 'poster' }
+    ],
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    // console.log(wx.Cloud.getWXContext(),333)
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
   /**
    * 生命周期函数--监听页面显示
    */
@@ -93,15 +31,42 @@ Page({
     }
     this.initData()
   },
+  onShareAppMessage() {
 
+  },
   /**
    * Methods 相关
    */
+  showPay() {
+    wx.previewImage({
+      urls: ['cloud://yegoudaxue-5g7j3z4r4142a6c6.7965-yegoudaxue-5g7j3z4r4142a6c6-1304300501/cdn/pay.png'] // 需要预览的图片http链接列表
+    })
+  },
   initData() {
     this.setData({
       userInfo:app.globalData.userInfo
     })
   },
+  onCloseShare() {
+    this.setData({ isShowShare: false });
+  },
+
+  onSelectShare(event) {
+    console.log(event,434545)
+    this.onCloseShare()
+  },
+  // 打开分享
+  openShare() {
+    console.log(6666)
+    this.setData({
+      isShowShare:true
+    })
+    // wx.showShareMenu({
+    //   withShareTicket: true,
+    //   menus: ['shareAppMessage']
+    // })
+  },
+  // 监听用户登录
   onGetUserInfo(e) {
     // console.log(e,222)
     const userInfo = e.detail.userInfo

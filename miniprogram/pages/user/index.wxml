@@ -25,15 +25,22 @@
     </view>
   </block>
   <view class="content-wrapper">
+    <van-share-sheet
+  show="{{ isShowShare }}"
+  title="发扬运河文化，传承感恩美德"
+  options="{{ options }}"
+  bind:select="onSelectShare"
+  bind:close="onCloseShare"
+/>
     <view class="cu-bar bg-white solid-bottom">
     <view class="action">
       <text class="cuIcon-title text-orange "></text> 发扬运河文化，传承感恩美德
     </view>
     <view class="action">
-      <button class="cu-btn bg-grey shadow" bindtap="showModal" data-target="menuModal">分享</button>
+      <button class="cu-btn bg-grey shadow" bindtap="openShare">分享</button>
     </view>
   </view>
-    <view class="cu-list menu sm-border card-menu margin-top">
+  <view class="cu-list menu sm-border card-menu margin-top">
       <view class="cu-item">
       <view class="content">
         <text class="cuIcon-tagfill text-red"></text>
@@ -57,7 +64,7 @@
         <text class="text-grey">添砖加瓦、手有余香</text>
       </view>
       <view class="action">
-        <button class="cu-btn round bg-orange shadow">
+        <button class="cu-btn round bg-orange shadow" bindtap="showPay">
           <text class="cuIcon-sponsorfill"></text> 立即赞赏</button>
       </view>
     </view>
