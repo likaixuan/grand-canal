@@ -2,7 +2,7 @@
 <scroll-view class='user-container' scroll-y>
   <view class="top-wrapper">
     <block wx:if="{{userInfo}}">
-      <image src="{{userInfo.avatarUrl}}" mode="scaleToFill" class="avatar"></image>
+      <image src="{{userInfo.avatarUrl? userInfo.avatarUrl:'../../static/img/avatar.png' }}" mode="scaleToFill" class="avatar"></image>
       <view class="user-nickname">
         {{userInfo.realname || userInfo.nickName}}
       </view>
@@ -24,7 +24,64 @@
       <button class="cu-btn round line-cyan shadow lg" open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">立即登录</button>
     </view>
   </block>
-  <block wx:else>
+  <view class="content-wrapper">
+    <view class="cu-bar bg-white solid-bottom">
+    <view class="action">
+      <text class="cuIcon-title text-orange "></text> 发扬运河文化，传承感恩美德
+    </view>
+    <view class="action">
+      <button class="cu-btn bg-grey shadow" bindtap="showModal" data-target="menuModal">分享</button>
+    </view>
+  </view>
+    <view class="cu-list menu sm-border card-menu margin-top">
+      <view class="cu-item {{menuArrow?'arrow':''}}">
+      <view class="content">
+        <text class="cuIcon-tagfill text-red"></text>
+        <text class="text-grey">标签</text>
+      </view>
+      <view class="action">
+        <view class="cu-tag round bg-orange light">探险家</view>
+        <view class="cu-tag round bg-olive light">感恩</view>
+        <view class="cu-tag round bg-blue light">天马行空</view>
+      </view>
+    </view>
+    <view class="cu-item arrow">
+      <navigator class="content" hover-class="none" url="../list/list" open-type="redirect">
+        <text class="cuIcon-discoverfill text-yellow"></text>
+        <text class="text-grey">我的动态</text>
+      </navigator>
+    </view>
+    <view class="cu-item">
+      <view class="content">
+        <text class="cuIcon-evaluate_fill text-orange"></text>
+        <text class="text-grey">添砖加瓦、手有余香</text>
+      </view>
+      <view class="action">
+        <button class="cu-btn round bg-orange shadow">
+          <text class="cuIcon-sponsorfill"></text> 立即赞赏</button>
+      </view>
+    </view>
+    <view class="cu-item">
+      <view class="content padding-tb-sm">
+        <view>
+          <text class="cuIcon-mail text-grey margin-right-xs"></text> 推送</view>
+        <view class="text-gray text-sm">
+          <text class="cuIcon-infofill margin-right-xs"></text> 当您的想法被人评论、点赞时</view>
+      </view>
+      <view class="action">
+        <switch class="sm" bindchange="switchSex"></switch>
+      </view>
+    </view>
+    <view class="cu-item arrow">
+      <button class="cu-btn content" open-type="contact">
+        <text class="cuIcon-servicefill text-grey"></text>
+        <text class="text-grey">建议 o(∩_∩)o </text>
+      </button>
+    </view>
+  </view>
+  </view>
+
+  <!-- <block wx:else>
     <view class="timeline-wrapper">
     <view class="cu-timeline">
       <view class="cu-time">昨天</view>
@@ -72,5 +129,5 @@
       </view>
     </view>
   </view>
-  </block>
+  </block> -->
 </scroll-view>

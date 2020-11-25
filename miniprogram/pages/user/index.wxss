@@ -8,6 +8,9 @@
 
 
 .top-wrapper {
+  position: fixed;
+  top:0px;
+  left:0px;
   height: 320rpx;
   width: 100%;
   background: #44c1af;
@@ -16,7 +19,6 @@
   align-items: center;
   font-size: 28rpx;
   color: white;
-  position: relative;
   /* border-radius:0px 0px 240rpx 240rpx; */
 }
 
@@ -74,4 +76,18 @@
 
 .top-wrapper .temp {
   margin-top: 160rpx;
+}
+
+.content-wrapper {
+  position: fixed;
+  top:320rpx;
+  /* padding-top:24rpx; */
+  bottom:144rpx;
+  left:0px;
+  z-index: 22;
+  right:0px;
+  width:100%;
+  overflow: hidden;
+  overflow-y: auto;
+  /* background:white; */
 }
