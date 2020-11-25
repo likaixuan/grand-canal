@@ -10,9 +10,20 @@
         autosize
         border="{{ false }}"
       />
+  <van-field 
+    wx:if="{{!isLocationAuthorize}}"
+    readonly
+    label="记录位置"
+    border="{{ false }}"
+    use-button-slot
+  >
+  <van-switch slot="button" size="24px"  checked="{{ isLocation }}" bind:change="onChange" />
+
+  </van-field>
   </van-cell-group>
+
   <view class="upload-wrapper">
-    <van-uploader file-list="{{ fileList }}" max-count="3" bind:after-read="afterRead" />
+    <van-uploader file-list="{{ fileList }}" max-count="3" bind:after-read="afterRead" bind:delete="onDeleteImage" />
   </view>
   <view class="btn-wrapper">
     <view class="padding flex flex-direction">
