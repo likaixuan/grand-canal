@@ -94,3 +94,15 @@
   overflow-y: auto;
   /* background:white; */
 }
+
+
+/* 海报相关 */
+.share-qrcode {
+  position: fixed;
+  top: -4440px;
+}
+
+.share-poster {
+  position: fixed;
+  top: -3000px;
+}

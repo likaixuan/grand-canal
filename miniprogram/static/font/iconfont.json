@@ -6,6 +6,20 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "52698",
+      "name": "跟踪定位",
+      "font_class": "genzongdingwei",
+      "unicode": "e61a",
+      "unicode_decimal": 58906
+    },
+    {
+      "icon_id": "167207",
+      "name": "人员定位",
+      "font_class": "renyuandingwei",
+      "unicode": "e675",
+      "unicode_decimal": 58997
+    },
+    {
       "icon_id": "4566821",
       "name": "中心介绍",
       "font_class": "zhongxinjieshao",
