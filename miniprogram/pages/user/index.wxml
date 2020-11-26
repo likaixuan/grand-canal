@@ -18,12 +18,8 @@
         临时用户
       </view> -->
     </block>
+    <button style="margin-top:16rpx;" wx:if="{{!userInfo || userInfo.type === User.TYPE_TEMP}}" class="cu-btn shadow sm bg-white" open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">立即登录</button>
   </view>
-  <block wx:if="{{!userInfo || userInfo.type === User.TYPE_TEMP}}">
-    <view class="btn-wrapper">
-      <button class="cu-btn round line-cyan shadow lg" open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">立即登录</button>
-    </view>
-  </block>
   <view class="content-wrapper">
     <van-share-sheet
   show="{{ isShowShare }}"

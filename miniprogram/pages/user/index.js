@@ -148,7 +148,8 @@ Page({
             }
           })
         })
-    }).catch(()=>{
+    }).catch((err)=>{
+      console.log(err)
       wx.showToast({
         title: '制作海报失败',
         icon: 'none'

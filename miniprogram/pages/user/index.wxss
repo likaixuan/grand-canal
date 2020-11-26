@@ -14,7 +14,7 @@
   position: fixed;
   top:0px;
   left:0px;
-  height: 320rpx;
+  height: 336rpx;
   width: 100%;
   background: #44c1af;
   display: flex;
@@ -24,25 +24,6 @@
   color: white;
   /* border-radius:0px 0px 240rpx 240rpx; */
 }
-
-.btn-wrapper {
-  position:fixed;
-  top:320rpx;
-  left:0px;
-  right:0px;
-  bottom:144rpx;
-  display: flex;
-  /* background:red; */
-  justify-content:center;
-  align-items:center;
-  /* margin-bottom:160rpx; */
-}
-
-.btn-wrapper button {
-  
-}
-
-
 
 .timeline-wrapper {
   background:white;
@@ -83,7 +64,7 @@
 
 .content-wrapper {
   position: fixed;
-  top:320rpx;
+  top:336rpx;
   /* padding-top:24rpx; */
   bottom:0px;
   left:0px;
