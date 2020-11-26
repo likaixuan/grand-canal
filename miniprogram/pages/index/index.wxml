@@ -9,8 +9,7 @@
     <switch class='sm' checked='{{isMap}}' bindchange='onShowTypeChange'></switch>
   </view>
 </view>
-<block wx:if="{{isMap}}">
-  <view class="map-container">
+<view class="map-container" hidden="{{!isMap}}">
   <view class="setting-wrapper cu-list menu" wx:if="{{isLocationAuthorize}}">
       <view class="cu-item">
         <view class="content">
@@ -23,6 +22,7 @@
         </view>
       </view>
   </view>
+  <icon class="center-btn iconfont iconrenyuandingwei"></icon>
   <icon  bindtap="moveToLocation" class="move-center-btn iconfont icon83dingwei public-shadow2"></icon>
     <map 
            id="map"
@@ -30,56 +30,53 @@
            markers="{{map.markers}}"
            latitude="{{map.latitude}}"
            longitude="{{map.longitude}}"
-           bindcallouttap="callouttap">
+           bindcallouttap="callouttap"
+           bindregionchange="onRegionchange">
       <cover-view slot="callout" >
-        <cover-view marker-id="{{1}}" class="marker-wrapper public-shadow2">
-          <!-- <cover-view class="marker-image" style="background-image:url(https://thirdwx.qlogo.cn/mmopen/vi_32/5Bu9SmQFDPqySiaZ7brMuTu0v083ic0m3ICicXyj0EhetJlYNgxvGkQZvZyTicf1fY5KvSR3wiaDmOwqTmyoXtHN6XQ/132)"></cover-view> -->
-          <cover-image class="marker-image" src="https://thirdwx.qlogo.cn/mmopen/vi_32/5Bu9SmQFDPqySiaZ7brMuTu0v083ic0m3ICicXyj0EhetJlYNgxvGkQZvZyTicf1fY5KvSR3wiaDmOwqTmyoXtHN6XQ/132"/>
+        <cover-view marker-id="{{item.id}}" class="marker-wrapper public-shadow2" wx:for="{{map.markers}}">
+          <cover-image class="marker-image" src="{{item.avatarUrl? item.avatarUrl:'../../static/img/avatar.png'}}"/>
           <cover-view></cover-view>
         </cover-view>
       </cover-view>
     </map>
   </view>
-
-
-</block>
-<block wx:else>
-  <view class="cu-card dynamic no-card" wx:for="{{trendList}}" wx:key="{{index}}">
-  <view class="cu-item shadow">
-    <view class="cu-list menu-avatar">
-      <view class="cu-item">
-        <view class="cu-avatar round lg" style="background-image:url({{item.avatarUrl}});"></view>
-        <view class="content flex-sub">
-          <view>{{item.nickName}}</view>
-          <view class="text-gray text-sm flex justify-between">
-            {{item.createTime}}
+  <view class="list-container"  hidden="{{isMap}}">
+    <view class="cu-card dynamic no-card" wx:for="{{trendList}}" wx:key="{{index}}">
+      <view class="cu-item shadow">
+          <view class="cu-list menu-avatar">
+            <view class="cu-item">
+              <view class="cu-avatar round lg" style="background-image:url({{item.avatarUrl}});"></view>
+              <view class="content flex-sub">
+                <view>{{item.nickName}}</view>
+                <view class="text-gray text-sm flex justify-between">
+                  {{item.createTime}}
+                </view>
+              </view>
+            </view>
           </view>
-        </view>
+          <view class="text-content">
+            {{item.content}}
+          </view>
+          <view class="img-wrapper">
+            <view class="img-box" wx:key="{{imgIndex}}"
+                wx:for="{{item.imgList}}" wx:for-index="imgIndex" wx:for-item="img">
+              <van-image
+                lazy-load
+                width="200rpx"
+                height="200rpx"
+                src="{{img.url}}" 
+                class="image"
+              />
+            </view>
+          </view>
+          <view class="text-gray text-sm text-right padding">
+            <text class="cuIcon-attentionfill margin-lr-xs"></text> {{item.readNum}}
+            <text class="cuIcon-appreciatefill margin-lr-xs"></text> {{item.likeNum}}
+            <text class="cuIcon-messagefill margin-lr-xs"></text> {{item.commentNum}}
+          </view>
       </view>
-    </view>
-    <view class="text-content">
-      {{item.content}}
-    </view>
-    <view class="img-wrapper">
-      <view class="img-box" wx:key="{{imgIndex}}"
-          wx:for="{{item.imgList}}" wx:for-index="imgIndex" wx:for-item="img">
-        <van-image
-          lazy-load
-          width="200rpx"
-          height="200rpx"
-          src="{{img.url}}" 
-          class="image"
-        />
-      </view>
-    </view>
-    <view class="text-gray text-sm text-right padding">
-      <text class="cuIcon-attentionfill margin-lr-xs"></text> {{item.readNum}}
-      <text class="cuIcon-appreciatefill margin-lr-xs"></text> {{item.likeNum}}
-      <text class="cuIcon-messagefill margin-lr-xs"></text> {{item.commentNum}}
     </view>
   </view>
-</view>
-</block>
 
   </view>
 </scroll-view>

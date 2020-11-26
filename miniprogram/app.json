@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/user/index",
     "pages/index/index",
+    "pages/user/index",
     "pages/introduce/index",
     "pages/upload/index",
     "pages/timeline/index"

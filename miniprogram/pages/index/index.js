@@ -14,23 +14,16 @@ Page({
   data: {
     map:{
       isLocationAuthorize:false,
-      markers:[{
-        id:1,
-        latitude: 38.03599,
-        longitude: 114.46979,
-        height:'0px',
-        width:'0px',
-        customCallout: {
-          anchorY: 0,
-          anchorX: 0,
-          display: 'ALWAYS'
-        },
-        // iconPath:'https://thirdwx.qlogo.cn/mmopen/vi_32/5Bu9SmQFDPqySiaZ7brMuTu0v083ic0m3ICicXyj0EhetJlYNgxvGkQZvZyTicf1fY5KvSR3wiaDmOwqTmyoXtHN6XQ/132'
-      }],
+      latitude: 38.03599,
+      longitude: 114.46979,
+      markers:[]
+    },
+    centerPoint:{
       latitude: 38.03599,
       longitude: 114.46979
     },
     trendList:[],
+    nearTrendList:[],
     isMap:true
   },
   a:function() {
@@ -39,8 +32,15 @@ Page({
   onShow: function () {
     // 发布想法后 刷新数据
     if(app.globalData.isPublished === true) {
-      wx.startPullDownRefresh()
       app.globalData.isPublished = false
+      if(this.data.isMap) {
+        this.getNearTrendList().then(()=>{
+          return this.resetMarkers()
+        })
+        this.getTrendList()
+      } else {
+        wx.startPullDownRefresh()
+      }
     }
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
       this.getTabBar().setData({
@@ -53,14 +53,25 @@ Page({
     this.handleLocationAuth()
   },
   onReady: function () {
-    console.log(6666)
     map = wx.createMapContext('map')
-    console.log(map,555555)
   },
   //  将地图移动至当前定位点
   moveToLocation() {
-    console.log(5655)
     map.moveToLocation()
+  },
+  // 设置地图授权标志
+  setIsLocationAuthorize(bool) {
+    this.setData({
+      isLocationAuthorize:bool
+    })
+    app.globalData.isLocationAuthorize = bool
+  },
+  // 设置当前地图中心点坐标
+  setCenterPoint(point) {
+      this.setData({
+        "centerPoint":point
+      })
+      app.globalData.centerPoint = point
   },
   // 获取当前位置
   getCurrentLocation() {
@@ -75,49 +86,53 @@ Page({
         'map.longitude':longitude,
         'map.latitude':latitude
       })
+      this.setCenterPoint({
+        longitude,
+        latitude
+      })
     })
   },
+
   // 处理获取位置鉴权
   handleLocationAuth() {
     const scope = 'scope.userLocation'
     return promisify(wx.getSetting)({
       scope
     }).then((res)=>{
+      console.log(res,4545)
       if (res.authSetting['scope.userLocation']) {
         // 已授权 可以获取当前位置
-        return this.getCurrentLocation()
-        app.globalData.isLocationAuthorize = false
+        this.setIsLocationAuthorize(false)
+        return this.getCurrentLocation().then(()=>{
+          return this.getNearTrendList().then(()=>{
+            this.resetMarkers()
+          })
+        })
       } else if (res.authSetting['scope.userLocation'] === false) {
         // 明确拒绝过
-        app.globalData.isLocationAuthorize = true
-        this.setData({
-          isLocationAuthorize: true
-        })
+        this.setIsLocationAuthorize(true)
       } else {
         // 第一次授权
         return promisify(wx.authorize)({
           scope
         }).then(()=>{
-          app.globalData.isLocationAuthorize = false
-          this.setData({
-            isLocationAuthorize: false
+          this.setIsLocationAuthorize(false)
+          return this.getCurrentLocation().then(()=>{
+            return this.getNearTrendList().then(()=>{
+              this.resetMarkers()
+            })
           })
         })
       }
     }).catch((err)=>{
-      app.globalData.isLocationAuthorize = true
-      this.setData({
-        isLocationAuthorize: true
-      })
+      console.log(err,343434)
+      this.setIsLocationAuthorize(true)
     })
   },
   // 监听用户手动授权
   onOpensetting(e) {
     if (e.detail.authSetting['scope.userLocation']) {
-      this.setData({
-        isLocationAuthorize: false
-      })
-      app.globalData.isLocationAuthorize = false
+      this.setIsLocationAuthorize(false)
       this.getCurrentLocation()
     }
   },
@@ -131,11 +146,64 @@ Page({
   callouttap(e) {
     console.log(e,343434)
   },
+  // 重置markers
+  resetMarkers() {
+    this.setData({
+      "map.markers":this.data.nearTrendList.map((item,index)=>{
+        const longitude = item.location.coordinates[0]
+        const latitude = item.location.coordinates[1]
+        return {
+          ...item,
+          id:index,
+          latitude,
+          longitude,
+          // height:'0px',
+          // width:'0px',
+          customCallout: {
+            anchorY: 0,
+            anchorX: 0,
+            display: 'ALWAYS'
+          },
+        }
+      })
+    })
+  },
+  // 获取附近的动态
+  getNearTrendList(params = {}) {
+    const {
+      longitude,
+      latitude
+    } = this.data.centerPoint
+    params.latitude = params.latitude || latitude
+    params.longitude = params.longitude || longitude
+    params.maxDistance = params.maxDistance || 50000
+    console.log(params,52323)
+    return promisify(wx.cloud.callFunction)({
+      name: 'getNearTrend',
+      data:{
+        ...params
+      }
+    }).then((res)=>{
+      console.log(res,'获取附近的动态')
+      this.setData({
+        nearTrendList:res.result.list.map((item)=>{
+          return {
+            ...item.userInfo[0],
+            ...item,
+            createTime:formatTime(new Date(item.createTime)),
+            updateTime:formatTime(new Date(item.updateTime))
+          }
+        })
+      })
+    })
+  },
+  // 获取动态列表
   getTrendList() {
     return promisify(wx.cloud.callFunction)({
       name: 'getTrend',
       data:{}
     }).then((res)=>{
+      console.log(res,'获取全部动态')
       this.setData({
         trendList:res.result.list.map((item)=>{
           return {
@@ -147,6 +215,21 @@ Page({
         })
       })
     })
+  },
+  // 监听地图变化
+  onRegionchange(e) {
+      if (e.type === 'end') {
+        // 获取中心点，重新加载
+        promisify(map.getCenterLocation)().then((res)=>{
+          this.setCenterPoint({
+            longitude:res.longitude,
+            latitude:res.latitude
+          })
+          return this.getNearTrendList().then(()=>{
+            return this.resetMarkers()
+          })
+        })
+      }
   },
   // 监听下拉刷新
   onPullDownRefresh() {

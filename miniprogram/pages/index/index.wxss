@@ -22,7 +22,16 @@
   width:200rpx;
   height:200rpx; */
 }
-
+.list-container {
+  /* background:red; */
+  /* position: fixed;
+  top:100rpx;
+  left:0px;
+  width:100%;
+  min-height:100%;
+  padding-bottom:144rpx;
+  z-index:9999999; */
+}
 .map-container {
   position: fixed;
   top:100rpx;
@@ -53,19 +62,6 @@
   background-size:cover;
 }
 
-.move-center-btn {
-  /* position: absolute;
-  z-index:999;
-  width:80rpx;
-  height:80rpx;
-  border-radius:50%;
-  background:#44c1af;
-  top:0px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  color:white; */
-}
 .setting-wrapper {
   position: absolute;
   z-index:999;
@@ -87,5 +83,23 @@
   align-items:center;
   color:white;
   font-size:56rpx;
-  
+}
+
+.center-btn  {
+  position: absolute;
+  z-index:999;
+  width:80rpx;
+  height:80rpx;
+  border-radius:50%;
+  color:#44c1af;
+  /* background:red; */
+  /* opacity:0.3; */
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  /* color:white; */
+  font-size:88rpx;
 }

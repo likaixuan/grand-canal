@@ -54,7 +54,8 @@ Page({
           icon: 'success',
           duration: 2000
         })
-        fileList.splice(index,1)
+          fileList.splice(index,1)
+          this.data.uploadedList.splice(index,1)
           this.setData({
             fileList
           })
@@ -96,15 +97,20 @@ Page({
       file.url = res.fileID
       // 上传的列表
       this.data.uploadedList.push({url: res.fileID}) 
-    }).catch((err)=>{
-      console.log(err,32222)
-      file.status = 'failed'
-      file.message= '上传失败'
-    }).finally(()=>{
       file.deletable = true
       this.setData({
         [`fileList[${index}]`]:file
       })
+    }).catch((err)=>{
+      console.log(err,32222)
+      file.status = 'failed'
+      file.message= '上传失败'
+      file.deletable = true
+      this.setData({
+        [`fileList[${index}]`]:file
+      })
+    }).finally(()=>{
+     
     })
 
     // 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式
