@@ -84,5 +84,5 @@
   bind:close="onCloseShare"
 />
    <!-- canvas区域 -->
-  <canvas style="width:640px; height:1008px;" canvas-id="{{item.id}}" class="share-poster {{item.id}}" wx:key="{{item.id}}" wx:for="{{originPosterOptionList}}"></canvas>
+  <canvas style="width:640px; height:1008px;" canvas-id="{{item.id}}" class="share-poster {{item.id}}" wx:key="item.id" wx:for="{{originPosterOptionList}}"></canvas>
 </scroll-view>

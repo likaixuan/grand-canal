@@ -11,7 +11,7 @@
         border="{{ false }}"
       />
   <van-field 
-    wx:if="{{!isLocationAuthorize}}"
+    wx:if="{{!isLocationAuthorize && isMap}}"
     readonly
     label="记录位置"
     border="{{ false }}"

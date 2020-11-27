@@ -35,6 +35,9 @@ Page({
   },
   onShow: function () {
     // 发布想法后 刷新数据
+    this.setData({
+      isMap:app.globalData.isMap
+    })
     if(app.globalData.isPublished === true) {
       app.globalData.isPublished = false
       if(this.data.isMap) {
@@ -143,9 +146,11 @@ Page({
   },
   // 显示类型切换
   onShowTypeChange(e) {
+    const isMap = e.detail.value
     this.setData({
-      isMap:e.detail.value
+      isMap
     })
+    app.globalData.isMap = isMap
     console.log(e,343434)
   },
   callouttap(e) {
@@ -223,6 +228,14 @@ Page({
   },
   // 监听地图变化
   onRegionchange(e) {
+    console.log(e,444)
+    if(e.causedBy === 'drag') {
+      wx.showLoading({
+        title: '正在探索..',
+      })
+    }
+    clearTimeout(this.data.debounceTimerId)
+    this.data.debounceTimerId = setTimeout(() => {
       if (e.type === 'end') {
         // 获取中心点，重新加载
         promisify(map.getCenterLocation)().then((res)=>{
@@ -233,8 +246,13 @@ Page({
           return this.getNearTrendList().then(()=>{
             return this.resetMarkers()
           })
+        }).then(()=>{
+          wx.hideLoading()
+        }).catch(()=>{
+          wx.hideLoading()
         })
       }
+    },100)
   },
   // 监听下拉刷新
   onPullDownRefresh() {

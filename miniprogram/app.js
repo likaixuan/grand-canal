@@ -40,7 +40,9 @@ App({
     isLocationAuthorize:false,
     isPublished:false, // 用于发表成功想法back后，动态页刷新
     userInfo: wx.getStorageSync('userInfo'),
-    currentTrendDetail:{}
+    currentTrendDetail:{},
+    isMap:true,
+    map:{}
   },
   /**
    * 更新或创建新用户

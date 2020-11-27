@@ -21,13 +21,16 @@ Page({
     content:'',
     isLocationAuthorize:true,
     isLocation:false,
+    isMap:false,
     location:[]
   },
   onShow: function () {
     const isLocationAuthorize = globalData.isLocationAuthorize
+    const isMap = globalData.isMap
     this.setData({
+      isMap,
       isLocationAuthorize,
-      isLocation:!isLocationAuthorize
+      isLocation:!isLocationAuthorize && isMap
     })
   },
   onChange({ detail }) {
@@ -109,8 +112,6 @@ Page({
       this.setData({
         [`fileList[${index}]`]:file
       })
-    }).finally(()=>{
-     
     })
 
     // 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式
@@ -133,10 +134,23 @@ Page({
       title: '正在发布',
     })
     if(uploadedList.length === fileList.length) {
-      return promisify(globalData.map.getCenterLocation)().then((res)=>{
+      const isLocation = this.data.isLocation
+      // return Promise.resolve().then(()=>{
+      //   if(isLocation) {
+      //     console.log(globalData.map)
+      //     return promisify(globalData.map.getCenterLocation)()
+      //   } else {
+      //     return Promise.resolve()
+      //   }
+      // })
+      return Promise.resolve().then((res)=>{
+        let location = []
+        if(isLocation) {
+          location = [globalData.centerPoint.longitude,globalData.centerPoint.latitude]
+        }
         return trend.add({
-          isLocation:this.data.isLocation,
-          location:[res.longitude,res.latitude],
+          isLocation,
+          location,
           content,
           imgList:uploadedList
         })
