@@ -57,7 +57,7 @@ Page({
     this.handleLocationAuth()
   },
   onReady: function () {
-    map = wx.createMapContext('map')
+    app.globalData.map = map = wx.createMapContext('map')
   },
   //  将地图移动至当前定位点
   moveToLocation() {
@@ -72,6 +72,7 @@ Page({
   },
   // 设置当前地图中心点坐标
   setCenterPoint(point) {
+      console.log(point,4455666)
       this.setData({
         "centerPoint":point
       })

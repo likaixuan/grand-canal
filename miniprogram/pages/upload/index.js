@@ -133,11 +133,13 @@ Page({
       title: '正在发布',
     })
     if(uploadedList.length === fileList.length) {
-      return trend.add({
-        isLocation:this.data.isLocation,
-        location:[globalData.centerPoint.longitude,globalData.centerPoint.latitude],
-        content,
-        imgList:uploadedList
+      return promisify(globalData.map.getCenterLocation)().then((res)=>{
+        return trend.add({
+          isLocation:this.data.isLocation,
+          location:[res.longitude,res.latitude],
+          content,
+          imgList:uploadedList
+        })
       }).then((res)=>{
         wx.showToast({ title: '发布成功', icon: 'success' });
         app.globalData.isPublished = true
