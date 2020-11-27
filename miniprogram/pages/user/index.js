@@ -170,6 +170,7 @@ Page({
   onCloseShare() {
     // 关闭分享面板
     this.setData({ isShowShare: false });
+    this.getTabBar().showTabBar()
   },
   // 分享面板中选择分享项
   onSelectShare(event) {
@@ -182,6 +183,7 @@ Page({
   },
   // 打开分享面板
   openShare() {
+    this.getTabBar().hideTabBar()
     this.setData({
       isShowShare:true
     })

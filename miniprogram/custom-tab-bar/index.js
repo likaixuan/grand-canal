@@ -14,6 +14,7 @@ Component({
    * 组件的初始数据
    */
   data: {
+    isShow:true,
     currentIndex: 0
   },
 
@@ -29,6 +30,16 @@ Component({
     openUploadPanel() {
        wx.navigateTo({
         url:'/pages/upload/index'
+      })
+    },
+    hideTabBar() {
+      this.setData({
+        isShow:false
+      })
+    },
+    showTabBar() {
+      this.setData({
+        isShow:true
       })
     }
   }

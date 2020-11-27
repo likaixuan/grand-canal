@@ -21,13 +21,6 @@
     <button style="margin-top:16rpx;" wx:if="{{!userInfo || userInfo.type === User.TYPE_TEMP}}" class="cu-btn shadow sm bg-white" open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">立即登录</button>
   </view>
   <view class="content-wrapper">
-    <van-share-sheet
-  show="{{ isShowShare }}"
-  title="发扬运河文化，传承感恩美德"
-  options="{{ options }}"
-  bind:select="onSelectShare"
-  bind:close="onCloseShare"
-/>
     <view class="cu-bar bg-white solid-bottom">
     <view class="action">
       <text class="cuIcon-title text-orange "></text> 发扬运河文化，传承感恩美德
@@ -83,6 +76,13 @@
     </view>
   </view>
   </view>
+  <van-share-sheet
+  show="{{ isShowShare }}"
+  title="发扬运河文化，传承感恩美德"
+  options="{{ options }}"
+  bind:select="onSelectShare"
+  bind:close="onCloseShare"
+/>
    <!-- canvas区域 -->
   <canvas style="width:640px; height:1008px;" canvas-id="{{item.id}}" class="share-poster {{item.id}}" wx:key="{{item.id}}" wx:for="{{originPosterOptionList}}"></canvas>
 </scroll-view>

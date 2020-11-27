@@ -6,7 +6,6 @@
   left:0px;
   right:0px;
   bottom:144rpx;
-  transform:translate3d(0,0,0);
 }
 
 

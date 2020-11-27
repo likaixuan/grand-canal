@@ -1,5 +1,5 @@
 <!--custom-tab-bar/index.wxml-->
-<view class='tabs-wrapper public-shadow2'>
+<view class='tabs-wrapper public-shadow2' hidden="{{!isShow}}">
   <view class="tab-item {{currentIndex==1 ? 'active':''}}" data-path='/pages/introduce/index' data-index="{{1}}" bindtap='switchTab'>
     <icon class='iconfont iconfengjing' />
     <view class="tab-text">运河</view>
