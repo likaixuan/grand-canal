@@ -26,8 +26,12 @@ Page({
     nearTrendList:[],
     isMap:true
   },
-  a:function() {
-
+  onCallouttap:function(e) {
+    console.log(e, this.data.nearTrendList[e.detail.markerId])
+    app.globalData.currentTrendDetail = this.data.nearTrendList[e.detail.markerId]
+    wx.navigateTo({
+      url: '/pages/trendDetail/index',
+    })
   },
   onShow: function () {
     // 发布想法后 刷新数据

@@ -4,7 +4,8 @@
     "pages/user/index",
     "pages/introduce/index",
     "pages/upload/index",
-    "pages/timeline/index"
+    "pages/timeline/index",
+    "pages/trendDetail/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#44c1af",

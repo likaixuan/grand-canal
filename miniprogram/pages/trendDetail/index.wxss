@@ -1,0 +1,47 @@
+/* miniprogram/pages/trendDetail/index.wxss */
+.trend-detail-container {
+  position: absolute;
+  top:0px;
+  right:0px;
+  left:0px;
+  bottom:0px;
+  overflow:hidden;
+  overflow-y:auto;
+  background:white;
+}
+
+.img-wrapper {
+  display:flex;
+  flex-wrap:wrap;
+  padding:16rpx 32rpx;
+}
+
+.img-box {
+  flex-basis:33.33%;
+  display:flex;
+  justify-content:center;
+}
+
+.trend-bottom {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.location-wrapper {
+  font-size:24rpx;
+  color:rgba(0,0,0,0.32);
+  margin-left:32rpx;
+}
+
+.comment-wrapper {
+  /* border-top:1rpx solid rgba(0,0,0,0.1); */
+  display:flex;
+  justify-content:center;
+  padding-top:80rpx;
+  
+}
+
+.comment-wrapper text {
+  font-size:24rpx;
+  color:rgba(0,0,0,0.53);
+}

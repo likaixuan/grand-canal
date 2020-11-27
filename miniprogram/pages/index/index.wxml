@@ -30,10 +30,10 @@
            markers="{{map.markers}}"
            latitude="{{map.latitude}}"
            longitude="{{map.longitude}}"
-           bindcallouttap="callouttap"
+           bindcallouttap="onCallouttap"
            bindregionchange="onRegionchange">
       <cover-view slot="callout" >
-        <cover-view marker-id="{{item.id}}" class="marker-wrapper public-shadow2" wx:for="{{map.markers}}">
+        <cover-view marker-id="{{item.id}}" wx:key="id" class="marker-wrapper public-shadow2" wx:for="{{map.markers}}">
           <cover-image class="marker-image" src="{{item.avatarUrl? item.avatarUrl:'../../static/img/avatar.png'}}"/>
           <cover-view></cover-view>
         </cover-view>
@@ -41,7 +41,7 @@
     </map>
   </view>
   <view class="list-container"  hidden="{{isMap}}">
-    <view class="cu-card dynamic no-card" wx:for="{{trendList}}" wx:key="{{index}}">
+    <view class="cu-card dynamic no-card" wx:for="{{trendList}}" wx:key="index">
       <view class="cu-item shadow">
           <view class="cu-list menu-avatar">
             <view class="cu-item">
@@ -58,9 +58,9 @@
             {{item.content}}
           </view>
           <view class="img-wrapper">
-            <view class="img-box" wx:key="{{imgIndex}}"
-                wx:for="{{item.imgList}}" wx:for-index="imgIndex" wx:for-item="img">
-              <van-image
+            <view class="img-box" wx:key="url"
+                wx:for="{{item.imgList}}" wx:for-item="img">
+                <van-image
                 lazy-load
                 width="200rpx"
                 height="200rpx"

@@ -1,0 +1,49 @@
+<!--miniprogram/pages/trendDetail/index.wxml-->
+<view class="trend-detail-container">
+  <view class="cu-card dynamic no-card">
+    <view class="cu-item shadow">
+          <view class="cu-list menu-avatar">
+            <view class="cu-item">
+              <view class="cu-avatar round lg" style="background-image:url({{trendDetail.avatarUrl}});"></view>
+              <view class="content flex-sub">
+                <view>{{trendDetail.nickName}}</view>
+                <view class="text-gray text-sm flex justify-between">
+                  {{trendDetail.createTime}}
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="text-content">
+            {{trendDetail.content}}
+          </view>
+          <view class="img-wrapper">
+            <view class="img-box" wx:key="url"
+                wx:for="{{trendDetail.imgList}}" wx:for-index="imgIndex" wx:for-item="img">
+               <van-image
+                lazy-load
+                width="200rpx"
+                height="200rpx"
+                data-url="{{img.url}}"
+                bind:click="previewImage"
+                src="{{img.url}}" 
+                class="image"
+              />
+            </view>
+          </view>
+          <view class="trend-bottom">
+            <view class="location-wrapper" wx:if="{{trendDetail.isLocation}}">
+              距离您{{trendDetail.distance}}米
+            </view>
+            <view class="text-gray text-sm text-right padding">
+              <text class="cuIcon-attentionfill margin-lr-xs"></text> {{trendDetail.readNum}}
+              <text class="cuIcon-appreciatefill margin-lr-xs"></text> {{trendDetail.likeNum}}
+              <text class="cuIcon-messagefill margin-lr-xs"></text> {{trendDetail.commentNum}}
+            </view>
+          </view>
+      
+    </view>
+    </view>
+    <view class="comment-wrapper solid-top">
+      <text>暂无评论</text>
+    </view>
+</view>
