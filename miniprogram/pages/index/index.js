@@ -33,6 +33,12 @@ Page({
       url: '/pages/trendDetail/index',
     })
   },
+  openDetail:function(e) {
+    app.globalData.currentTrendDetail = this.data.trendList[e.currentTarget.dataset.index]
+    wx.navigateTo({
+      url: '/pages/trendDetail/index',
+    })
+  },
   onShow: function () {
     // 发布想法后 刷新数据
     this.setData({

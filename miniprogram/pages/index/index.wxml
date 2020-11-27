@@ -41,7 +41,7 @@
     </map>
   </view>
   <view class="list-container"  hidden="{{isMap}}">
-    <view class="cu-card dynamic no-card" wx:for="{{trendList}}" wx:key="index">
+    <view class="cu-card dynamic no-card" wx:for="{{trendList}}" data-index="{{index}}" bindtap="openDetail" wx:key="index">
       <view class="cu-item shadow">
           <view class="cu-list menu-avatar">
             <view class="cu-item">
