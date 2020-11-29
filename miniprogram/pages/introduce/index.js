@@ -1,71 +1,205 @@
-// pages/introduce/introduce.js
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    cardCur: 0,
+    activeName:'wh',
+    teamList:[{
+      name:'计信team',
+      url:'http://qncdn.yegoudaxue.com/team/team.jpg'
+    },{
+      name:'俯视',
+      url:'http://qncdn.yegoudaxue.com/team/%E4%BF%AF%E8%A7%86.jpg'
+    },{
+      name:'大运河',
+      url:'http://qncdn.yegoudaxue.com/team/%E5%A4%A7%E8%BF%90%E6%B2%B3.jpg'
+    },{
+      name:'大运河展示区',
+      url:'http://qncdn.yegoudaxue.com/team/%E5%A4%A7%E8%BF%90%E6%B2%B3%E5%B1%95%E7%A4%BA%E5%8C%BA.jpg'
+    },{
+      name:'树',
+      url:'http://qncdn.yegoudaxue.com/team/%E6%A0%91.jpg'
+    },{
+      name:'桥',
+      url:'http://qncdn.yegoudaxue.com/team/%E6%A1%A5.jpg'
+    },{
+      name:'河',
+      url:'http://qncdn.yegoudaxue.com/team/%E6%B2%B3.jpg'
+    },{
+      name:'河边',
+      url:'http://qncdn.yegoudaxue.com/team/%E6%B2%B3%E8%BE%B9.jpg'
+    }],
+    tabMap:{
+      wh:{
+        name:'wh',
+        label:'文化',
+        list:[
+          {
+            name:'东光大运河锣鼓',
+            url:'http://qncdn.yegoudaxue.com/wh/%E4%B8%9C%E5%85%89%E5%A4%A7%E8%BF%90%E6%B2%B3%E9%94%A3%E9%BC%93.JPG'
+          },{
+            name:'健康大步走',
+            url:'http://qncdn.yegoudaxue.com/wh/%E5%81%A5%E5%BA%B7%E5%A4%A7%E6%AD%A5%E8%B5%B0.JPG'
+          },{
+            name:'四大名旦-荀慧生',
+            url:'http://qncdn.yegoudaxue.com/wh/%E5%9B%9B%E5%A4%A7%E5%90%8D%E6%97%A6-%E8%8D%80%E6%85%A7%E7%94%9F.JPG'
+          },{
+            name:'母亲河骑行',
+            url:'http://qncdn.yegoudaxue.com/wh/%E6%AF%8D%E4%BA%B2%E6%B2%B3%E9%AA%91%E8%A1%8C.JPG'
+          },{
+            name:'爱国武术家-霍元甲',
+            url:'http://qncdn.yegoudaxue.com/wh/%E7%88%B1%E5%9B%BD%E6%AD%A6%E6%9C%AF%E5%AE%B6-%E9%9C%8D%E5%85%83%E7%94%B2.JPG'
+          },{
+            name:'秋思之祖-马致远',
+            url:'http://qncdn.yegoudaxue.com/wh/%E7%A7%8B%E6%80%9D%E4%B9%8B%E7%A5%96-%E9%A9%AC%E8%87%B4%E8%BF%9C.JPG'
+          },{
+            name:'舌尖上的大运河',
+            url:'http://qncdn.yegoudaxue.com/wh/%E8%88%8C%E5%B0%96%E4%B8%8A%E7%9A%84%E5%A4%A7%E8%BF%90%E6%B2%B3.jpg'
+          }
+        ]
+      },
+      fj:{
+        name:'fj',
+        label:'风景',
+        list:[{
+          name:'东光段大运河',
+          url:'http://qncdn.yegoudaxue.com/fj/%E4%B8%9C%E5%85%89%E6%AE%B5%E5%A4%A7%E8%BF%90%E6%B2%B3.JPG'
+        },{
+          name:'大张村',
+          url:'http://qncdn.yegoudaxue.com/fj/%E5%A4%A7%E5%BC%A0%E6%9D%91.JPG'
+        },{
+          name:'实景',
+          url:'http://qncdn.yegoudaxue.com/fj/%E5%AE%9E%E6%99%AF.JPG'
+        },{
+          name:'小圈村',
+          url:'http://qncdn.yegoudaxue.com/fj/%E5%B0%8F%E5%9C%88%E6%9D%91.JPG'
+        },{
+          name:'最美运河段',
+          url:'http://qncdn.yegoudaxue.com/fj/%E6%9C%80%E7%BE%8E%E8%BF%90%E6%B2%B3%E6%AE%B5.JPG'
+        },{
+          name:'森林公园氧生园',
+          url:'http://qncdn.yegoudaxue.com/fj/%E6%A3%AE%E6%9E%97%E5%85%AC%E5%9B%AD%E6%B0%A7%E7%94%9F%E5%9B%AD.JPG'
+        },{
+          name:'油坊口村',
+          url:'http://qncdn.yegoudaxue.com/fj/%E6%B2%B9%E5%9D%8A%E5%8F%A3%E6%9D%91.JPG'
+        },{
+          name:'狗放羊',
+          url:'http://qncdn.yegoudaxue.com/fj/%E7%8B%97%E6%94%BE%E7%BE%8A.JPG'
+        },{
+          name:'生态林段',
+          url:'http://qncdn.yegoudaxue.com/fj/%E7%94%9F%E6%80%81%E6%9E%97%E6%AE%B5.JPG'
+        },{
+          name:'白鹭',
+          url:'http://qncdn.yegoudaxue.com/fj/%E7%99%BD%E9%B9%AD.JPG'
+        },{
+          name:'运河',
+          url:'http://qncdn.yegoudaxue.com/fj/%E8%BF%90%E6%B2%B3.JPG'
+        },{
+          name:'连镇镇',
+          url:'http://qncdn.yegoudaxue.com/fj/%E8%BF%9E%E9%95%87%E9%95%87.JPG'
+        },{
+          name:'铁路',
+          url:'http://qncdn.yegoudaxue.com/fj/%E9%93%81%E8%B7%AF.JPG'
+        },{
+          name:'麒麟卧村',
+          url:'http://qncdn.yegoudaxue.com/fj/%E9%BA%92%E9%BA%9F%E5%8D%A7%E6%9D%91.JPG'
+        }]
+      },
+      cc:{
+        name:'cc',
+        label:'传承',
+        list:[{
+          name:'东光古兵器',
+          url:'http://qncdn.yegoudaxue.com/cc/%E4%B8%9C%E5%85%89%E5%8F%A4%E5%85%B5%E5%99%A8.JPG'
+        },{
+          name:'保护',
+          url:'http://qncdn.yegoudaxue.com/cc/%E4%BF%9D%E6%8A%A4.JPG'
+        },{
+          name:'天子诏书',
+          url:'http://qncdn.yegoudaxue.com/cc/%E5%A4%A9%E5%AD%90%E8%AF%8F%E4%B9%A6.png'
+        },{
+          name:'戏曲',
+          url:'http://qncdn.yegoudaxue.com/cc/%E6%88%8F%E6%9B%B2.JPG'
+        },{
+          name:'石碑',
+          url:'http://qncdn.yegoudaxue.com/cc/%E7%9F%B3%E7%A2%91.JPG'
+        },{
+          name:'碑',
+          url:'http://qncdn.yegoudaxue.com/cc/%E7%A2%91.JPG'
+        },{
+          name:'鉴碑怀古',
+          url:'http://qncdn.yegoudaxue.com/cc/%E9%89%B4%E7%A2%91%E6%80%80%E5%8F%A4.JPG'
+        }]
+      },
+      ls:{
+        name:'ls',
+        label:'历史',
+        list:[{
+          name:'给水所1',
+          url:'http://qncdn.yegoudaxue.com/ls/%E7%BB%99%E6%B0%B4%E6%89%801.jpg'
+        },{
+          name:'给水所2',
+          url:'http://qncdn.yegoudaxue.com/ls/%E7%BB%99%E6%B0%B4%E6%89%802.jpg'
+        },{
+          name:'老房子',
+          url:'http://qncdn.yegoudaxue.com/ls/%E8%80%81%E6%88%BF%E5%AD%90.JPG'
+        },{
+          name:'老砖房',
+          url:'http://qncdn.yegoudaxue.com/ls/%E8%80%81%E7%A0%96%E6%88%BF.JPG'
+        },{
+          name:'谢家坝1',
+          url:'http://qncdn.yegoudaxue.com/ls/%E8%B0%A2%E5%AE%B6%E5%9D%9D1.jpg'
+        },{
+          name:'谢家坝2',
+          url:'http://qncdn.yegoudaxue.com/ls/%E8%B0%A2%E5%AE%B6%E5%9D%9D2.jpg'
+        },{
+          name:'谢家坝3',
+          url:'http://qncdn.yegoudaxue.com/ls/%E8%B0%A2%E5%AE%B6%E5%9D%9D3.JPG'
+        }]
+      },
+    },
+    swiperList: [{
+      name:'计信team',
+      url:'http://qncdn.yegoudaxue.com/team/team.jpg'
+    },{
+      name:'健康大步走',
+      url:'http://qncdn.yegoudaxue.com/wh/%E5%81%A5%E5%BA%B7%E5%A4%A7%E6%AD%A5%E8%B5%B0.JPG'
+    },{
+      name:'给水所1',
+      url:'http://qncdn.yegoudaxue.com/ls/%E7%BB%99%E6%B0%B4%E6%89%801.jpg'
+    },{
+      name:'鉴碑怀古',
+      url:'http://qncdn.yegoudaxue.com/cc/%E9%89%B4%E7%A2%91%E6%80%80%E5%8F%A4.JPG'
+    },{
+      name:'天子诏书',
+      url:'http://qncdn.yegoudaxue.com/cc/%E5%A4%A9%E5%AD%90%E8%AF%8F%E4%B9%A6.png'
+    }],
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  onLoad() {
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function (e) {
-    console.log(e,3434341111)
+  onShow() {
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
       this.getTabBar().setData({
         currentIndex: 1
       })
     }
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  tabSelect(e) {
+    this.setData({
+      activeName: e.currentTarget.dataset.name
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  previewImage(e) {
+    const { url,list } =  e.currentTarget.dataset
+    wx.previewImage({
+      urls: list.map((item)=>{
+        return item.url
+      }),
+      current: url,
+    })
+  } ,
+  // cardSwiper
+  cardSwiper(e) {
+    this.setData({
+      cardCur: e.detail.current
+    })
   }
 })

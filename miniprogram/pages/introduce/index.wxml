@@ -1,13 +1,41 @@
 <!--pages/introduce/introduce.wxml-->
 <view class='introduce-container'>
-  <view class='top-wrapper'>
-    <view class='left'>
-      <image src=''></image>
+  <swiper class="screen-swiper square-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
+    <swiper-item wx:for="{{swiperList}}" wx:key="item.url" data-url="{{item.url}}" data-list="{{swiperList}}" bindtap="previewImage">
+      <image src="{{item.url}}?imageView2/2/w/750" mode="aspectFill"></image>
+    </swiper-item>
+  </swiper>
+  <scroll-view scroll-x class="bg-white nav">
+    <view class="flex text-center">
+      <view class="cu-item flex-sub {{item.name==activeName?'text-orange cur':''}}" wx:for="{{tabMap}}" wx:key="index" bindtap="tabSelect" data-name="{{item.name}}">
+        {{item.label}}
+      </view>
+    </view>
+  </scroll-view>
+  <view class="tab-content-wrapper">
+    <view class="tab-item-wrapper" hidden="{{item.name!==activeName}}"  wx:for="{{tabMap}}" wx:key="index" bindtap="tabSelect" data-name="{{item.name}}">
+      <view class="tab-item-box"  wx:for="{{item.list}}" data-url="{{img.url}}" data-list="{{item.list}}" bindtap="previewImage" wx:key="item.label" wx:for-item="img">
+        <image 
+        class="image"
+        lazy-load
+        model="aspectFill"
+        src="{{img.url}}?imageView2/2/w/300"
+      />
+      <text>{{img.name}}</text>
+      </view>
     </view>
   </view>
-  <view class="">
-    <view class='right'>
-      <image src=''></image>
+  <view class="cu-bar bg-white">
+    <view class="action">
+      <text class="cuIcon-title text-orange"></text> 计信team运河游
     </view>
   </view>
+  <swiper class="card-swiper square-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
+    <swiper-item wx:for="{{teamList}}" wx:key="item.url" class="{{cardCur==index?'cur':''}}" data-url="{{item.url}}" data-list="{{teamList}}" bindtap="previewImage">
+      <view class="swiper-item">
+        <image src="{{item.url}}?imageView2/2/w/750" mode="aspectFill"></image>
+      </view>
+    </swiper-item>
+  </swiper>
+
 </view>

@@ -1,12 +1,8 @@
 /* pages/introduce/introduce.wxss */
 
 .introduce-container {
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
   background: #f5f5f5;
+  padding-bottom:184rpx;
   /* background:red; */
 }
 
@@ -30,14 +26,38 @@
   border-right: 1200rpx solid transparent;
 }
 
-
-.right {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 0;
-  height: 0;
-  border-top: 400rpx solid #44c1af;
-  border-right: 1200rpx solid transparent;
+.tower-swiper .tower-item {
+  /* transform: scale(calc(0.5 + var(--index) / 10)); */
+  margin-left: calc(var(--left) * 100rpx - 150rpx);
+  z-index: var(--index);
 }
 
+.tab-content-wrapper {
+  padding-top:32rpx;
+}
+
+.tab-item-wrapper {
+  display:flex;
+  flex-wrap:wrap;
+
+}
+
+.tab-item-box {
+  flex-basis:50%;
+  display:flex;
+  margin-bottom:32rpx;
+  flex-direction:column;
+  align-items:center;
+}
+
+.tab-item-box image{
+  height:200rpx;
+  width:320rpx;
+  border-radius:8rpx;
+}
+
+.tab-item-box text {
+  margin-top:12rpx;
+  font-size:24rpx;
+  color:rgba(0,0,0,0.53);
+}
