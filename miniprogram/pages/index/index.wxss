@@ -36,19 +36,20 @@
 }
 
 .marker-wrapper {
-  height:104rpx;
-  width:104rpx;
-  border-radius:50%;
-  background:white;
-  display:flex;
+
+  /* background:white; */
+  /* display:flex;
   justify-content:center;
-  align-items:center;
+  align-items:center; */
   /* overflow: hidden; */
+  border-radius:50%;
 }
 
 .marker-image {
-  height:88rpx;
-  width:88rpx;
+  border:8rpx solid white;
+  height:104rpx;
+  width:104rpx;
+  box-sizing:border-box;
   border-radius:50%;
   background-size:cover;
 }

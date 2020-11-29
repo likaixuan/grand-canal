@@ -52,7 +52,8 @@ Page({
         })
         this.getTrendList()
       } else {
-        wx.startPullDownRefresh()
+        this.getTrendList()
+        // wx.startPullDownRefresh()
       }
     }
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
