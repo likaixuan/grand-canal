@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isMap:false,
     trendDetail:{}
   },
   /**
@@ -14,6 +15,7 @@ Page({
   onShow() {
     console.log(app.globalData.currentTrendDetail,9999)
     this.setData({
+      isMap:app.globalData.isMap,
       trendDetail:app.globalData.currentTrendDetail
     })
   },

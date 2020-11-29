@@ -29,14 +29,12 @@ Page({
     originPosterOptionList: [{
       id: 'poster1',
       bg: {
-        src: '/static/img/share1.png',
         x: 0,
         y: 0,
         height: 1008,
         width: 640
       },
       avatar:{
-        defaultPath:'/static/img/avatar.png',
         x:52,
         y:42,
         width:120,
@@ -83,26 +81,32 @@ Page({
       icon: 'loading',
       mask: true
     })
-    return new Promise((resolve,reject)=>{
-      if(app.globalData.userInfo.avatarUrl) {
-        return promisify(wx.getImageInfo)({
+    return Promise.all([promisify(wx.getImageInfo)({
+      src:'cloud://yegoudaxue-5g7j3z4r4142a6c6.7965-yegoudaxue-5g7j3z4r4142a6c6-1304300501/cdn/share1.png'
+    }),new Promise((resolve,reject)=>{
+      if('/static/img/avatar.png' === app.globalData.userInfo.avatarUrl) {
+        console.log(666)
+        resolve({
+          path:'/static/img/avatar.png'
+        })
+      } else {
+        promisify(wx.getImageInfo)({
           src:app.globalData.userInfo.avatarUrl.replace('http://thirdwx.qlogo.cn', 'https://wx.qlogo.cn')
         }).then((res)=>{
-          resolve(res.path)
-          console.log(res,77777)
+          resolve(res)
         }).catch((err)=>{
           reject(err)
         })
-      } else {
-        resolve('/static/img/avatar.png')
       }
-    }).then((avatar)=>{
+    })]).then((arr)=>{
+      const bgSrc = arr[0].path
+      const avatarSrc = arr[1].path
       const drawTask = this.data.originPosterOptionList.map((item) => {
         // 将绘制的海报添加到并行队列中
         return new Promise((resolve, reject) => {
   
           const posterContext = wx.createCanvasContext(item.id)
-          posterContext.drawImage(item.bg.src, item.bg.x, item.bg.y, item.bg.width, item.bg.height)
+          posterContext.drawImage(bgSrc, item.bg.x, item.bg.y, item.bg.width, item.bg.height)
           posterContext.save()
           posterContext.beginPath()
           // 画一个圆形裁剪区域
@@ -110,10 +114,10 @@ Page({
           // 裁剪
           posterContext.clip()
           // 绘制背景图
-          posterContext.drawImage(avatar, item.avatar.x, item.avatar.y, item.avatar.width, item.avatar.height)
+          posterContext.drawImage(avatarSrc, item.avatar.x, item.avatar.y, item.avatar.width, item.avatar.height)
           posterContext.restore()
           posterContext.draw(false, (msg) => {
-            // 二维码绘制到海报上
+            // canvas转图片
             wx.canvasToTempFilePath({
               width: item.bg.width,
               height: item.bg.height,

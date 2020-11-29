@@ -2,7 +2,7 @@
 <scroll-view class='user-container' scroll-y>
   <view class="top-wrapper">
     <block wx:if="{{userInfo}}">
-      <image src="{{userInfo.avatarUrl? userInfo.avatarUrl:'../../static/img/avatar.png' }}" mode="scaleToFill" class="avatar"></image>
+      <image src="{{userInfo.avatarUrl}}" class="avatar"></image>
       <view class="user-nickname">
         {{userInfo.realname || userInfo.nickName}}
       </view>

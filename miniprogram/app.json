@@ -1,8 +1,8 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/user/index",
     "pages/introduce/index",
+    "pages/user/index",
     "pages/upload/index",
     "pages/timeline/index",
     "pages/trendDetail/index"

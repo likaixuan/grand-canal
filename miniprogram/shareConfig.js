@@ -3,7 +3,7 @@ const globalData = getApp().globalData
 const shareList = [{
   title: '发扬运河文化，传承感恩美德',
   path: `/pages/index/index`,
-  imageUrl: '/static/img/share.png'
+  imageUrl: 'cloud://yegoudaxue-5g7j3z4r4142a6c6.7965-yegoudaxue-5g7j3z4r4142a6c6-1304300501/cdn/share.png'
 }]
 
 // 获取分享信息

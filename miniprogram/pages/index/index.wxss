@@ -46,12 +46,11 @@
 }
 
 .marker-image {
-  border:8rpx solid white;
-  height:104rpx;
-  width:104rpx;
-  box-sizing:border-box;
+  border:4rpx solid white;
+  height:96rpx;
+  width:96rpx;
+  /* box-sizing:border-box; */
   border-radius:50%;
-  background-size:cover;
 }
 
 .setting-wrapper {

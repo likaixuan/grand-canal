@@ -30,6 +30,7 @@ App({
         } else {
             return this.updateOrAddUser({
               nickName:'临时用户'+ Date.now() ,
+              avatarUrl:'/static/img/avatar.png',
               type:User.TYPE_TEMP
             })
         }
