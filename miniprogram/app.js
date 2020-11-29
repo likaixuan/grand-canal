@@ -30,7 +30,7 @@ App({
         } else {
             return this.updateOrAddUser({
               nickName:'临时用户'+ Date.now() ,
-              avatarUrl:'/static/img/avatar.png',
+              avatarUrl:'cloud://yegoudaxue-5g7j3z4r4142a6c6.7965-yegoudaxue-5g7j3z4r4142a6c6-1304300501/cdn/avatar.png',
               type:User.TYPE_TEMP
             })
         }

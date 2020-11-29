@@ -35,6 +35,17 @@
   width:100%;
 }
 
+.list-container {
+  position: relative;
+}
+.list-container .avatar {
+  position: absolute;
+  left:24rpx;
+  height:104rpx;
+  width:104rpx;
+  border-radius:50%;
+}
+
 .marker-wrapper {
 
   /* background:white; */

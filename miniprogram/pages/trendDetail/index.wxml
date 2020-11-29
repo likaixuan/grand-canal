@@ -25,6 +25,7 @@
                 height="200rpx"
                 data-url="{{img.url}}"
                 bind:click="previewImage"
+                model="aspectFill"
                 src="{{img.url}}" 
                 class="image"
               />

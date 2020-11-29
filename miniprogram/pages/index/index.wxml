@@ -32,10 +32,10 @@
            longitude="{{map.longitude}}"
            bindcallouttap="onCallouttap"
            bindregionchange="onRegionchange">
-      <cover-view slot="callout" >
-        <cover-view marker-id="{{item.id}}" wx:key="id" class="marker-wrapper" wx:for="{{map.markers}}">
-          <cover-image class="marker-image public-shadow2" src="{{item.avatarUrl}}"/>
-          <cover-view></cover-view>
+      <cover-view slot="callout">
+        <cover-view marker-id="{{item.id}}" wx:key="item.id"  class="marker-wrapper" wx:for="{{map.markers}}">
+          <cover-image class="marker-image public-shadow1" src="{{item.avatarUrl}}"/>
+          <cover-view> </cover-view>
         </cover-view>
       </cover-view>
     </map>
@@ -45,7 +45,10 @@
       <view class="cu-item shadow">
           <view class="cu-list menu-avatar">
             <view class="cu-item">
-              <view class="cu-avatar round lg" style="background-image:url({{item.avatarUrl}});"></view>
+              <image
+                     src="{{item.avatarUrl}}"
+                     lazy-load
+                     class="avatar" />
               <view class="content flex-sub">
                 <view>{{item.nickName}}</view>
                 <view class="text-gray text-sm flex justify-between">
@@ -64,6 +67,7 @@
                 lazy-load
                 width="200rpx"
                 height="200rpx"
+                model="aspectFill"
                 src="{{img.url}}" 
                 class="image"
               />

@@ -10,6 +10,7 @@ import {
 const trend = new Trend()
 const app = getApp()
 let map = null
+let addIndex = 0
 Page({
   data: {
     map:{
@@ -25,19 +26,6 @@ Page({
     trendList:[],
     nearTrendList:[],
     isMap:true
-  },
-  onCallouttap:function(e) {
-    console.log(e, this.data.nearTrendList[e.detail.markerId])
-    app.globalData.currentTrendDetail = this.data.nearTrendList[e.detail.markerId]
-    wx.navigateTo({
-      url: '/pages/trendDetail/index',
-    })
-  },
-  openDetail:function(e) {
-    app.globalData.currentTrendDetail = this.data.trendList[e.currentTarget.dataset.index]
-    wx.navigateTo({
-      url: '/pages/trendDetail/index',
-    })
   },
   onShow: function () {
     // 发布想法后 刷新数据
@@ -68,6 +56,24 @@ Page({
   },
   onReady: function () {
     app.globalData.map = map = wx.createMapContext('map')
+  },
+  // 头像气泡被点击时
+  onCallouttap:function(e) {
+  
+    const currentTrendDetail =  this.data.map.markers.find((item)=>{
+      return item.id === e.detail.markerId
+    })
+    app.globalData.currentTrendDetail = currentTrendDetail
+    wx.navigateTo({
+      url: '/pages/trendDetail/index',
+    })
+  },
+  // 打开详情页
+  openDetail:function(e) {
+    app.globalData.currentTrendDetail = this.data.trendList[e.currentTarget.dataset.index]
+    wx.navigateTo({
+      url: '/pages/trendDetail/index',
+    })
   },
   //  将地图移动至当前定位点
   moveToLocation() {
@@ -154,6 +160,9 @@ Page({
   // 显示类型切换
   onShowTypeChange(e) {
     const isMap = e.detail.value
+    if(!isMap) {
+      this.getTrendList()
+    }
     this.setData({
       isMap
     })
@@ -169,9 +178,10 @@ Page({
       "map.markers":this.data.nearTrendList.map((item,index)=>{
         const longitude = item.location.coordinates[0]
         const latitude = item.location.coordinates[1]
+        console.log(addIndex,333)
         return {
           ...item,
-          id:index,
+          id:addIndex++,
           latitude,
           longitude,
           // height:'0px',
