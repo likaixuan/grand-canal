@@ -53,6 +53,9 @@ Page({
           },{
             name:'舌尖上的大运河',
             url:'http://qncdn.yegoudaxue.com/wh/%E8%88%8C%E5%B0%96%E4%B8%8A%E7%9A%84%E5%A4%A7%E8%BF%90%E6%B2%B3.jpg'
+          },{
+            name:'采摘',
+            url:'http://qncdn.yegoudaxue.com/wh/%E9%87%87%E6%91%98.JPG'
           }
         ]
       },
@@ -127,6 +130,9 @@ Page({
         },{
           name:'鉴碑怀古',
           url:'http://qncdn.yegoudaxue.com/cc/%E9%89%B4%E7%A2%91%E6%80%80%E5%8F%A4.JPG'
+        },{
+          name:'东光',
+          url:'http://qncdn.yegoudaxue.com/cc/%E4%B8%9C%E5%85%89.JPG'
         }]
       },
       ls:{
@@ -153,6 +159,9 @@ Page({
         },{
           name:'谢家坝3',
           url:'http://qncdn.yegoudaxue.com/ls/%E8%B0%A2%E5%AE%B6%E5%9D%9D3.JPG'
+        },{
+          name:'石亭',
+          url:'http://qncdn.yegoudaxue.com/ls/%E7%9F%B3%E4%BA%AD.JPG'
         }]
       },
     },
